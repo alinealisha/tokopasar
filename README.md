@@ -73,6 +73,60 @@ Berikut adalah hasil akses URL pada Postman
 ![Screenshot (188)](https://github.com/user-attachments/assets/01d0427f-9435-49ce-8aa9-f2758dc9e616)
 ![Screenshot (189)](https://github.com/user-attachments/assets/68c05772-a21f-4a6f-816f-a5453a63a7c7)
 
+# Tugas 4
+## Apa perbedaan antara HttpResponseRedirect() dan redirect()?
+HttpResponseRedirect() adalah kelas bawaan Django yang mengembalikan respons HTTP dengan kode status 302 dan header Location yang berisi URL tujuan. Untuk menggunakannya, kita perlu secara eksplisit menentukan URL sebagai string atau membangunnya menggunakan fungsi reverse(). Di sisi lain, redirect() merupakan shortcut yang lebih praktis dan fleksibel, karena dapat menerima berbagai jenis argumen, seperti string URL, nama URL, atau objek model. 
 
+## Jelaskan cara kerja penghubungan model Product dengan User!
+Dalam Tugas 4 yang menggunakan Django, model *Product* dihubungkan dengan model *User** melalui relasi *ForeignKey**. Relasi ini memungkinkan setiap produk terkait dengan satu pengguna, sementara satu pengguna dapat memiliki banyak produk. Django sudah menyediakan model *User** di dalam modul **django.contrib.auth.models**, sehingga model ini bisa langsung digunakan untuk membuat relasi dengan **Product**. Pada model *Product**, kolom *ForeignKey** mengacu pada *User**, dan parameter **on_delete=models.CASCADE** memastikan bahwa ketika pengguna dihapus, semua produk yang terhubung dengannya juga ikut dihapus, sehingga konsistensi data tetap terjaga. 
 
+## Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+**Apa perbedaan antara authentication dan authorization?**
+1. *Authentication*
+   - Proses memverifikasi identitas pengguna yang bertujuan untuk memastikan bahwa pengguna yang mencoba mengakses sistem adalah siapa yang mereka klaim.
+2. *Authorization*
+   - Proses menentukan hak akses atau izin yang dimiliki pengguna setelah mereka terautentikasi. Ini menentukan sumber daya atau tindakan apa yang dapat diakses atau dilakukan oleh pengguna.
 
+**Apakah yang dilakukan saat pengguna login?**
+1. *Authentication*
+   - Pengguna memasukkan nama pengguna dan kata sandi. Sistem memverifikasi kredensial tersebut dengan mencocokkannya dengan data yang disimpan di database.
+2. *Authorization*
+   - Setelah kredenisal valid, pengguna akan terautentikasi. Selanjutnya, sistem akan memeriksa hak akses pengguna untuk menentukan apa yang boleh dan tidak boleh dilakukan oleh pengguna tersebut dalam aplikasi.
+
+**Bagaimana Django mengimplementasikan kedua konsep tersebut?**
+1. *Authentication*
+   - Django menggunakan sistem autentikasi yang terintegrasi yang mencakup model User. Dalam hal ini, digunakan metode authenticate() untuk memverifikasi kredensial pengguna. 
+2. *Authorization*
+   - Setelah pengguna terautentikasi, Django memanfaatkan permissions dan groups untuk mengelola autorisasi. Pengembang dapat menentukan izin untuk model tertentu dan memeriksa izin tersebut dengan menggunakan        decorator seperti @login_required(login_url='/login')
+
+## Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+Django mengelola pengingat untuk pengguna yang telah login melalui sesi yang disimpan baik di sisi server maupun dalam cookie di sisi klien. Ketika pengguna telah berhasil login, Django menciptakan sesi baru dan menyimpan informasi terkait pengguna tersebut. Setelah login berhasil, Django menghasilkan ID sesi yang unik dan menyimpannya sebagai cookie di browser. Data sesi yang berkaitan dengan pengguna akan disimpan di database server. Setiap kali pengguna mengirim permintaan ke server, ID sesi dalam cookie akan dikirimkan kembali oleh browser, sehingga Django dapat mengenali pengguna dan memastikan bahwa mereka tetap terautentikasi selama sesi tersebut aktif.
+Kemudian, cookies juga memiliki berbagai kegunaan lainnya, yaitu:
+1. Menyimpan preferensi pengguna:
+   Cookies dapat digunakan untuk menyimpan preferensi pengguna seperti bahasa, tema, atau misalnya barang yang ditambahkan ke keranjang belanja pada aplikasi e-commerce.
+2. Pelacakan aktivitas pengguna:
+   Cookies dapat digunakan untuk melacak aktivitas pengguna di berbagai halaman web, seperti apa yang telah diklik ataupun halaman yang dikunjungi. Hal ini dilakukan untuk memberikan pengalaman yang lebih           personal kepada pengguna.
+4. Iklan berbasis data:
+   Cookies seringkali digunakan untuk melacak perilaku/kebiasaan pengguna di berbagai situs web untuk menampilkan iklan yang relevan sesuai dengan kebiasaan pengguna.
+   
+**Namun, apakah semua cookies aman digunakan?**
+Tidak semua cookies aman digunakan. Terdapat beberapa risiko yang perlu diperhatikan terutama sebagai pengguna. Salah satu risiko utama yaitu **cookie hijacking**. Pada kasus ini, penyerang mencuri cookie yang tidak dienkripsi, pengguna akan terserang terutama apabila pengguna terhubung ke jaringan yang tidak aman. Selain itu, cookies juga rentan terhadap **Cross-Site Scripting (XSS)**, dalam hal ini penyerang memasukkan skrip berbahaya ke dalam suatu situs web untuk mencuri ataupun memodifikasi cookies. Kemudian, ada juga risiko **Cross-Site Request Forgery (CSRF), yang mana cookies dapat dimanfaatkan untuk mengirim permintaan berbahaya tanpa sepengetahuan pengguna.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+- Mengimpor modul yang dibutuhkan untuk Registrasi dengan Import UserCreationForm dari django.contrib.auth.forms untuk pembuatan form registrasi pengguna dan Import messages dari django.contib.auth untuk memberikan umpan balik kepada pengguna mengenai status registrasi.
+- Menambahkan fungsi Registrasi di views.py untuk mencetak formulir registrasi pengguna. Jika formulir bersifat valid saat disubmit, fungsi akan membuat akun pengguna baru dan menyimpannya ke dalam database.
+- Membuat file HTML baru yaitu register.html di dalam direktori templates yang berada di dalam direktori main untuk menyajikan halaman register yang mengumpulkan informasi username dan password pengguna. Form menggunakan metode POST agar data dikirim dengan aman ke server.
+- Menambahkan fungsi register ke urlpatterns yang terdapat di urls.py.
+- Mengimpor authenticate, login dan AuthenticationForm dari django.contrib.auth.
+- Menambahkan fungsi login_user di dalam views.py untuk memastikan pengguna yang berhasil login dapat mengakses fitur aplikasi.
+- Buat file login.html di direktori main/templates yang berisi form login untuk pengguna.
+- Menambahkan decorator login_required dari django.contrib.auth.decorators yaitu @login_required(login_url='/login') ke dalam views.py sebelum fungsi show_main.
+- Menambahkan fungsionalitas untuk menampilkan cookie last_login di views.py dengan menambahkan 'last_login': request.COOKIES['last_login'] ke dalam context yang berada di fungsi show_main.
+- Menambahkan response.delete_cookie('last_login') pada fungsi logout_user yang berada di views.py untuk menghapus cookie last_login saat pengguna logout.
+- Melakukan pemeriksaan cookie pada proyek Django dengan melakukan inspect di tab application pada halaman localhost.
+- Mengimpor user dari django.contrib.auth.models dan menambahkan field user pada models.py yaitu user = models.ForeignKey(User, on_delete=models.CASCADE)
+- Melakukan migrasi dengan perintah python manage.py makemigrations dan python manage.py migrate.
+- Mengimpor os di settings.py dan menyesuaikan variabel DEBUG.
+- Menambahkan file deploy.yml untuk melakukan push ke Github dan PWS secara bersamaan.
+- Menambahkan repository secrets.
+- Melakukan git add, commit dan push.
