@@ -18,7 +18,10 @@
 <h5>Rating Toko: </h5>
 <p>{{ rating }}<p>
 
-...
+<h5>Username: </h5>
+<p>{{ username }}<p>
+
+
 {% if not product_entries %}
 <p>Belum ada data produk pada Toko Pasar.</p>
 {% else %}
@@ -44,8 +47,16 @@
 {% endif %}
 
 <br />
+<h5>Sesi terakhir login {{ username }}: 
+  {{ last_login }}</h5>
+<br />
 
 <a href="{% url 'main:create_product_entry' %}">
   <button>Add New Product</button>
 </a>
+
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+
 {% endblock content %}

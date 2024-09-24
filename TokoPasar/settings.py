@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)1*b#k03oneb8m!h6_)y0zc!$bt+_=r7i=3fibmabxjk3w4m-p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+PRODUCTION = os.getenv("PRODUCTION", False)
+DEBUG = not PRODUCTION
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "alisha-aline-tokopasar.pbp.cs.ui.ac.id"]
 
@@ -122,4 +124,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://alisha-aline-tokopasar.pbp.cs.ui.ac.id", "https://alisha-aline-tokopasar.pbp.cs.ui.ac.id"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://alisha-aline-tokopasar.pbp.cs.ui.ac.id", "https://alisha-aline-tokopasar.pbp.cs.ui.ac.id"]
