@@ -130,3 +130,33 @@ Tidak semua cookies aman digunakan. Terdapat beberapa risiko yang perlu diperhat
 - Menambahkan file deploy.yml untuk melakukan push ke Github dan PWS secara bersamaan.
 - Menambahkan repository secrets.
 - Melakukan git add, commit dan push.
+
+# Tugas 5
+## Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Dalam CSS, ketika beberapa selector diterapkan pada elemen yang sama, prioritas pengambilan CSS selector tersebut ditentukan oleh spesifitas, yang diukur berdasarkan empat kategori yaitu:
+
+**1. **_Inline Styles_:****
+      CSS yang diterapkan langsung pada elemen HTML menggunakan atribut style memlilki    prioritas paling tinggi. Contoh: `<div style="color: pink;"></div>`
+
+**2. **_ID Selector_****
+      Selector yang menggunakan ID elemen dengan simbol '#'. 
+      Contoh: `#header { color: pink; }`.
+
+**3. _Class, Attribute, dan Pseudo-Class Selectors_**
+      Selector yang menggunakan class (.), atribut ([attribute]), atau pseudo-class (:hover, :focus, dll.). Contoh: `.menu { color: pink; }`.
+
+**4. _Type Selector dan Pseudo-Element Selectors_**
+      Selector yang menggunakan nama elemen HTML (misalnya div, p, h1) atau pseudo-elemen (::before, ::after). Contoh: `h1 { color: pink; }`
+
+#### Urutan Prioritas CSS
+**1. _Important Rule_**
+      Jika terdapat deklarasi yang menggunakan `!important`, deklarasi tersebut akan mengesampingkan aturan lainnya, terlepas dari spesifisitasnya.
+
+**2. _Spesifitas_**
+      Aturan dengan spesifisitas lebih tinggi diprioritaskan jika tidak ada `!important`.
+
+**3. _Source Order_**
+      Jika dua atau lebih aturan memiliki spesifisitas yang sama, aturan yang muncul paling akhir dalam kode CSS akan diterapkan.
+
+## Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+
