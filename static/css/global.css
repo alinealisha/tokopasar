@@ -1,0 +1,73 @@
+.form-style form input, 
+.form-style form textarea, 
+.form-style form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1.5px solid #a3b18a; 
+    border-radius: 0.5rem;
+    background-color: #f0f4f0; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* input field */
+.form-style form input:focus, 
+.form-style form textarea:focus, 
+.form-style form select:focus {
+    outline: none;
+    border-color: #74b49b; 
+    box-shadow: 0 0 10px rgba(116, 180, 155, 0.3); 
+    background-color: #ffffff;
+}
+
+/* Placeholder */
+.form-style form input::placeholder,
+.form-style form textarea::placeholder {
+    color: #7d8d72; 
+    font-style: italic;
+}
+
+/* Hover effect untuk input fields */
+.form-style form input:hover, 
+.form-style form textarea:hover, 
+.form-style form select:hover {
+    border-color: #9db58d; 
+}
+
+/* transisi untuk hover/focus states */
+.form-style form button {
+    padding: 0.75rem 1.5rem;
+    background-color: #74b49b; 
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect untuk button */
+.form-style form button:hover {
+    background-color: #4d8060; 
+    box-shadow: 0 4px 15px rgba(116, 180, 155, 0.3);
+}
+
+/* Button focus state */
+.form-style form button:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(116, 180, 155, 0.5);
+}
+
+/* Animasi */
+@keyframes subtle-shine {
+    0% { background-position: -150% 0; }
+    100% { background-position: 150% 0; }
+}
+
+.animate-shine {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1));
+    background-size: 200% 100%;
+    animation: subtle-shine 5s infinite linear;
+}
