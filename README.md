@@ -138,25 +138,99 @@ Dalam CSS, ketika beberapa selector diterapkan pada elemen yang sama, prioritas 
 **1. **_Inline Styles_:****
       CSS yang diterapkan langsung pada elemen HTML menggunakan atribut style memlilki    prioritas paling tinggi. Contoh: `<div style="color: pink;"></div>`
 
-**2. **_ID Selector_****
+**2. **_ID Selector_:****
       Selector yang menggunakan ID elemen dengan simbol '#'. 
       Contoh: `#header { color: pink; }`.
 
 **3. _Class, Attribute, dan Pseudo-Class Selectors_**
       Selector yang menggunakan class (.), atribut ([attribute]), atau pseudo-class (:hover, :focus, dll.). Contoh: `.menu { color: pink; }`.
 
-**4. _Type Selector dan Pseudo-Element Selectors_**
+**4. _Type Selector dan Pseudo-Element Selectors_:**
       Selector yang menggunakan nama elemen HTML (misalnya div, p, h1) atau pseudo-elemen (::before, ::after). Contoh: `h1 { color: pink; }`
 
 #### Urutan Prioritas CSS
-**1. _Important Rule_**
+**1. _Important Rule_:**
       Jika terdapat deklarasi yang menggunakan `!important`, deklarasi tersebut akan mengesampingkan aturan lainnya, terlepas dari spesifisitasnya.
 
-**2. _Spesifitas_**
+**2. _Spesifitas_:**
       Aturan dengan spesifisitas lebih tinggi diprioritaskan jika tidak ada `!important`.
 
-**3. _Source Order_**
+**3. _Source Order_:**
       Jika dua atau lebih aturan memiliki spesifisitas yang sama, aturan yang muncul paling akhir dalam kode CSS akan diterapkan.
 
 ## Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Karena memungkinkan aplikasi web untuk dapat beradaptasi secara otomatis dengan berbagai ukuran layar maupun perangkat, seperti handphone, tablet, dan desktop. Dengan banyaknya pengguna yang mengakses internet dari beragam perangkat, suatu web dapat memberikan pengalaman optimal bagi pengguna, terlepas dari ukuran layar tempat mereka mengakses web.
+
+#### Contoh aplikasi yang sudah menerapkan responsive design   
+**1. Twitter**
+
+Apabila twitter dibuka di perangkat seperti laptop, tab, dan hp. Ukuran dan tampilan dari twitter akan secara otomatis mengikuti perangkat dari penggunanya. Hal ini menunjukkan bahwa aplikasi Twitter telah menerapkan responsive design.
+
+#### Contoh aplikasi yang belum menerapkan responsive design
+**1. Instagram**
+
+Berbeda dengan Twitter, pada aplikasi Instagram, ketika dibuka di tab dengan ukuran tertentu, seringkali masih terlihat space hitam di sekitar halaman Instagram yang ditampilkan. Hal ini menunjukkan, Instagram belum menerapkan responsive design.
+
+## Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+**1. Margin**
+
+   Ruang di luar border elemen. Margin menentukan jarak antara elemen tersebut dengan elemen lainnya di halaman. Margin tidak memiliki warna. Kita bisa mengatur margin di sisi atas, bawah, kanan, atau kiri dari suatu elemen.
+   Contoh:
+   `div {
+      margin: 20px; /* Semua sisi mendapat margin 20px */
+    }`
+
+**2. Border**
+
+  Garis yang mengelilingi elemen, antara padding dan margin. Border bisa diatur ketebalannya, warnanya, dan juga stylenya seperti solid, dashed, dotted, dll. Border membentuk bingkai di sekitar elemen.
+  Contoh:
+  `div {
+    border: 2px solid black; /* Border hitam solid dengan ketebalan 2px */
+  }`
+
+
+**3. Padding**
+
+  Ruang di dalam elemen, antara kontemen elemen dengan border. Padding membuat jarak antara isi elemen dengan tepi border elemen. Padding juga bisa diatur untuk setiap sisi elemen.
+  Contoh:
+  `div {
+    padding: 15px; /* Semua sisi mendapat padding 15px */
+  }`
+
+#### Contoh pengimplementasian ketiga hal tersebut sekaligus
+```
+div {
+  margin: 20px; /* Jarak elemen dengan elemen lain */
+  border: 2px solid black; /* Garis border hitam dengan ketebalan 2px */
+  padding: 15px; /* Jarak antara konten dan border sebesar 15px */
+}
+```
+
+## Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+**1. Flexbox**
+
+Sistem layout satu dimensi yang digunakan untuk mendistribusikan ruang antar elemen dalam sebuah container secara fleksibel. Flexbox berfokus pada pengaturan tata letak di satu sumbu, baik secara horizontal maupun vertikal. Dengan flexbox, elemen di dalam suatu container dapat dengan mudah disusun secara fleksibel dalam hal ukuran dan tata letaknya, bahkan ketika ukuran viewport berubah.
+Kegunaan:
+  - Menyusun elemen dalam satu baris ataupun kolom secara responsif.
+  - Mengatur jarak dan proporsi elemen dalam container dengan mudah.
+  - Mempermudah perataan elemen secara vertikal atau horizontal.
+
+**2. Grid Layout**
+Sistem layout dua dimensi yang lebih kompleks dibandingkan flexbox. Dengan grid, kita bisa mengatur elemen dalam baris dan kolom secara bersamaan, sehingga lebih cocok untuk tata letak yang membutuhkan kontrol penuh terhadap elemen-elemen di berbagai area halaman. Kita juga dapat menentukan jumlah kolom dan baris, serta mendistribusikan elemen secara presisi.
+Kegunaan:
+  - Membuat layout yang kompleks dengan baris dan kolom.
+  - Mengatur elemen dalam struktur grid seperti layout majalah atau dashboard.
+  - Menentukan area yang spesifik untuk setiap elemen (misalnya, header, sidebar, dan footer) tanpa bergantung pada urutan elemen dalam HTML.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+1. Menambahkan Tailwind ke dalam aplikasi Django dengan mengakses file base.html dan menambahkan tag `<meta name="viewport">` untuk memastikan responsivitas.
+2. Menambahkan skrip CDN (Content Delivery Network) ke dalam base.html untuk menghubungkan template Django dengan tailwind.
+3. Menambahkan fitur edit produk dengan menambahkan fungsi baru yaitu untuk mengedit atribut produk pada views.py. Kemudian, pada file edit_product.html, sesuaikan URL dengan menambahkan path di dalam urls.py.
+4. Menambahkan fitur hapus produk dengan membuat fungsi delete_product pada file views.py. Kemudian pada file urls.py, tambahkan import delete_product dan path URL baru ke urlpatterns.
+5. Pada file main.html, tambahkan URL untuk menghapus produk menggunakan fungsi yang telah dibuat.
+6. Menambahkan Navigation Bar dengan membuat file baru yaitu navbar.html yang berada di dalam folder templates pada level yang sama dengan main.html. Setelah itu, hubungkan navbar.html dengan file-file seperti, main.html, create_product_entry.html, dan edit_product.html.
+7. Menambahkan `'whitenoise.middleware.WhiteNoiseMiddleware'` ke dalam file settings.py untuk mengelola static files. Kemudian, memastikan STATIC_ROOT, STATICFILES_DIRS, dan STATIC_URL telah dikonfigurasi dengan benar.
+8. Menambahkan gambar untuk kondisi ketika pengguna belum menambahkan product apapun di webnya dengan membuat file baru yaitu static dimana terdapat sub-folder css dan image. Kemudian, lakukan impor gambar ke dalam folder image.
+9. Menghubungkan global.css dan skrip tailwind ke base.html, lalu melakukan custom styling di dalam file global.css.
+10. Melakukan git add, commit, dan push yang akan scara otomatis dilakukan push ke PWS juga.
 
