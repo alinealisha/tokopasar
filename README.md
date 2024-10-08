@@ -234,3 +234,71 @@ Kegunaan:
 9. Menghubungkan global.css dan skrip tailwind ke base.html, lalu melakukan custom styling di dalam file global.css.
 10. Melakukan git add, commit, dan push yang akan scara otomatis dilakukan push ke PWS juga.
 
+# Tugas 6
+## Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+**1. Interaktivitas yang Tinggi**
+
+  Penggunaan JavaScript memungkinkan pengembang untuk membuat elemen interaktif, seperti form yang dapat divalidasi secara real-time, animasi, pop-up, dan fitur drag-and-drop yang meningkatkan interaksi pengguna dengan aplikasi web.
+  
+**2. Responsif dan Dinamis**
+
+  Dengan Javascript, konten pada halaman web dapat diperbarui secara dinamis tanpa harus memuat ulang seluruh halaman. Contohnya dengan AJAX (Asynchronous JavaScript and XML) yang memungkinkan pengambilan data di latar belakang.
+  
+**3. Integrasi dengan API**
+
+  JavaScript memudahkan pengembang untuk berinteraksi dengan API (Application Programming Interface) eksternal, seperti Google Maps API dan yang lainnya, sehingga aplikasi web dapat menampilkan informasi dari berbagai sumber secara real-time.
+  
+**4. Cross-Platform dan Cross-Browser**
+
+  JavaScript dapat dijalankan pada berbagai browser dan platform tanpa perlu penyesuaian khusus. Hal ini menjadikannya sangat fleksibel dan kompatibel untuk berbagai lingkungan pengguna.
+  
+**5. Pengembangan Cepat dengan Framework dan Library** 
+
+  JavaScript memiliki banyak framework dan library populer yang mempercepat pengembangan aplikasi web dengan menyediakan komponen dan struktur yang reusable serta mengikuti best practices.
+  
+**6. Kompatibilitas dengan HTML dan CSS**
+
+  JavaScript berintegrasi secara sempurna dengan HTML dan CSS untuk memanipulasi DOM (Document Object Model), memungkinkan pengembang mengubah tampilan dan perilaku elemen pada halaman web secara dinamis.
+  
+**7. Mendukung Pengembangan Aplikasi Mobile**
+
+  JavaScript juga digunakan dalam pengembangan aplikasi mobile dengan framework seperti React Native, yang memungkinkan pengembang membuat aplikasi mobile dengan basis JavaScript yang sama seperti pengembangan web.
+  
+**8. Ekosistem dan Komunitas yang Luas**
+
+  JavaScript memiliki ekosistem yang besar dengan banyaknya library dan tool yang tersedia serta komunitas yang aktif, sehingga mudah untuk menemukan solusi, tutorial, dan dukungan dari pengembang lain.
+
+## Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+  Fungsi dari penggunaan await ketika kita menggunakan fetch() adalah untuk menunggu hingga promise yang dikembalikan oleh fetch() selesai (resolved) sebelum melanjutkan mengeksekusi kode berikutnya. Await membuat kode yang asinkron berperilaku seperti kode yang sinkron, sehingga akan lebih mudah untuk dibaca dan dipahami. Dengan await, kita dapat menghindari penggunaan callback yang ebrtumpuk, sehingga kode akan lebih bersih dan terstruktur.
+
+## Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+Penggunaan decorator csrf_exempt pada vie yang akan digunakan untuk AJAX POST dilakukan untuk menonaktifkan validasi CSRF (Cross-Site Request Forgery) pada view tersebut. Secara default, Django memiliki middleware CSRF yang mencegah serangan CSRF dengan memverifikasi bahwa setiap permintaan POST berasal dari sumber yang terpercaya dengan memeriksa token CSRF.
+Dengan csrf_exempt, view tersebut tidak akan memeriksa token CSRF, sehingga AJAX POST dapat dilakukan tanpa masalah meskipun tidak disertakan token CSRF.
+
+## Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+**1. Keamanan**
+  -   Data yang diterima dari frontend bisa saja dimanipulasi oleh pengguna ataupun penyerang. Jika validasi hanya dilakukan di frontend saja, seorang penyerang bisa melewati lapisan ini dengan cara memodifikasi request secara langsung ke backend, misalnya dengan menggunakan alat seperti Postman atau dengan memanipulasi form HTML di browser.
+  -   Melakukan pembersihan dan validsi di backend memastikan bahwa data yang masuk ke sistem selalu melalui proses validasi yang tidak dapat dilewati.
+    
+**2. Integritas Data**
+  -   Frontend hanya berguna sebagai lapisan antarmuka pengguna dan tidak dapat sepenuhnya diandalkan untuk validasi data karena tidak semua pengguna akan berinteraksi dengan aplikasi menggunakan antarmuka resmi yang telah disediakan.
+  -   Dengan melakukan pembersihan di backend, data yang diterima dan disimpan di database akan selalu dalam format dan struktur yang sesuai, menjaga konsistensi data.
+    
+**3. Mengurangi ketergantungan pada javascript**
+  -   Validasi frontend biasanya bergantung pada JavaScript. Namun, tidak semua pengguna mengaktifkan JavaScript di browser mereka. Jika pembersihan hanya dilakukan di frontend, pengguna yang mematikan JavaScript dapat mengirimkan data yang tidak valid.
+  -   Backend, yang tidak bergantung pada kondisi browser, memastikan bahwa pembersihan tetap dilakukan tanpa memandang cara pengguna berinteraksi dengan aplikasi.
+    
+**4. Redundansi dan keandalan**
+  -   Melakukan validasi di kedua sisi (frontend dan backend) menciptakan lapisan perlindungan ganda. Frontend dapat membantu memberikan umpan balik instan kepada pengguna untuk memperbaiki input mereka secara langsung, sementara backend memberikan jaminan bahwa data yang disimpan sudah melalui proses validasi tambahan yang lebih ketat.
+    
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+1. Menambahkan pesan error pada login, ketika pengguna salah memasukkan data login, akan ditambahkan pesan error pada request dan pesan tersebut akan ditampilkan di halaman login.html.
+2. Membuat fungsi untuk menambah produk dengan AJAX. Di dalam file views.py, dibuat fungsi baru dengan nama add_product_entry_ajax yang akan bertugas untuk menangani permintaan AJAX yaitu untuk menambahkan produk ke database.
+3. Menambahkan routing untuk fungsi AJAX. Di dalam file urls.py, lakukan impor fungsi add_product_entry_ajax yang sudah dibuat, lalu tambahkan path URL ke dalam urlpatterns agar fungsi ini bisa diakses melalui alamat tertentu.
+4. Menampilkan data produk dengan Fetch API. Di views.py, ubah fungsi show_xml dan show_json agar hanya menampilkan produk yang dimiliki oleh pengguna yang sedang login. Kemudian, di main.html, hapus bagian yang menampilkan produk kosong, dan buat fungsi getProductEntries serta refreshProductEntries menggunakan JavaScript agar data produk dapat di-refresh secara otomatis.
+5. Membuat modal form untuk menambah produk. Di main.html, dibuat form di dalam modal (pop-up) untuk menambahkan produk, lalu menambahkan fungsi JavaScript yang memungkinkan modal tersebut berfungsi dengan baik seperti showModal(), hideModal(), addProductEntry().
+6. Menambahkan data produk menggunakan AJAX dan menggunakan form modal yang sudah dibuat untuk mengirimkan data produk baru ke server melalui AJAX. Lalu, tambahkan event listener di form yang akan menjalankan fungsi addProductEntry() ketika tombol simpan ditekan.
+7. Melindungi aplikasi dari Cross-Site Scripting (XSS) dengan memastikan data input dari pengguna dibersihkan sebelum disimpan ke database dengan menggunakan fungsi strip_tags di views.py. Kemudian, digunakan juga DOMPurify di main.html untuk membersihkan data produk sebelum ditampilkan di halaman agar aman dari serangan XSS.
+8. Melakukan git add, push, dan commit ke github serta PWS secara langsung.
